@@ -4,8 +4,8 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 ### 필수 패키지 설치
-# cmake: 크로스 플랫폼 빌드 자동화 도구로, C/C++ 프로젝트 빌드에 사용됩니다.
-# 많은 머신러닝 라이브러리들이 C++ 기반이므로 컴파일 시 필요합니다.
+- cmake: 크로스 플랫폼 빌드 자동화 도구로, C/C++ 프로젝트 빌드에 사용됩니다.
+- 많은 머신러닝 라이브러리들이 C++ 기반이므로 컴파일 시 필요합니다.
 brew install cmake git wget
 
 brew install pytorch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
@@ -40,44 +40,45 @@ lora_finetune.py
 ---
 
 ### * Ubuntu
-# fine_tuning_test
 
 ### Ubuntu 필수 패키지 설치
-# cmake: 크로스 플랫폼 빌드 자동화 도구로, C/C++ 프로젝트 빌드에 사용됩니다.
-# 많은 머신러닝 라이브러리들이 C++ 기반이므로 컴파일 시 필요합니다.
+cmake: 크로스 플랫폼 빌드 자동화 도구로, C/C++ 프로젝트 빌드에 사용됩니다.
+많은 머신러닝 라이브러리들이 C++ 기반이므로 컴파일 시 필요합니다.
+
 sudo apt-get update
+
 sudo apt-get install wget git cmake
 
 ### Miniconda 설치 (Linux/Ubuntu)
-# Miniconda 설치 스크립트 다운로드
+- Miniconda 설치 스크립트 다운로드
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
-# 설치 스크립트 실행
+- 설치 스크립트 실행
 bash Miniconda3-latest-Linux-x86_64.sh
 
-# 설치 스크립트 삭제 (선택사항)
+- 설치 스크립트 삭제 (선택사항)
 rm Miniconda3-latest-Linux-x86_64.sh
 
 ### Conda 초기화
-# conda 명령어 활성화 (설치 경로에 따라 다를 수 있음)
+- conda 명령어 활성화 (설치 경로에 따라 다를 수 있음)
 eval "$(/root/miniconda3/bin/conda shell.bash hook)"
-# 또는
+- 또는
 eval "$(/home/$USER/miniconda3/bin/conda shell.bash hook)"
 
-# conda 초기화
+- conda 초기화
 conda init bash
 
-# 터미널 재시작 효과
+- 터미널 재시작 효과
 source ~/.bashrc
 
-# (선택사항) conda base 환경 자동 활성화 비활성화
+- (선택사항) conda base 환경 자동 활성화 비활성화
 conda config --set auto_activate_base false
 
 ### 가상환경 생성 및 활성화
-# Python 3.10 버전으로 새로운 환경 생성
+- Python 3.10 버전으로 새로운 환경 생성
 conda create -n llm-finetune python=3.10
 
-# 가상환경 활성화
+- 가상환경 활성화
 conda activate llm-finetune
 
 ### 파이썬 패키지 설치
@@ -102,6 +103,9 @@ lora_finetune.py
 
 save_pretrained 명령어로 모델을 파인튜닝 후 로컬에 PyTorch 형식으로 저장.
 
+진행 도중 에러 발생.
+
+```bash
 (llm-finetune) root@b68e9f3b5f12:/workspaces/fine_tuning_test# python lora_finetune.py 
 {'quote': '“Be yourself; everyone else is already taken.”', 'author': 'Oscar Wilde', 'tags': ['be-yourself', 'gilbert-perreira', 'honesty', 'inspirational', 'misattributed-oscar-wilde', 'quote-investigator']}
 Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:15<00:00,  7.51s/it]
@@ -130,5 +134,5 @@ Traceback (most recent call last):
     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
 RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
   0%|          | 0/1881 [00:01<?, ?it/s]                          
-
+```
   위 에러 해결중.
